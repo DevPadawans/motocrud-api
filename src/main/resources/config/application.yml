@@ -1,0 +1,12 @@
+application:
+  title: 'MotoCrud API'
+  version: v1.0.0
+
+spring:
+  # profile
+  profiles.default: localdev
+  # application
+  application:
+    name: motocrud-api
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
