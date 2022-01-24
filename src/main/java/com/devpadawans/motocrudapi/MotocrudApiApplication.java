@@ -16,8 +16,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.persistence.EntityManagerFactory;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
-@EnableJpaRepositories("com.devpadawans.motocrudapi")
-@EntityScan("com.devpadawans.motocrudapi")
 public class MotocrudApiApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

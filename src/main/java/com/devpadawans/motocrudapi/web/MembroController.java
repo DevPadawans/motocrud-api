@@ -3,6 +3,7 @@ package com.devpadawans.motocrudapi.web;
 import com.devpadawans.motocrudapi.service.MembroService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ public class MembroController implements Serializable {
 
     private final static long serialVersionUID = 1L;
 
+    @Autowired
     private final MembroService memberService;
 
     @GetMapping(path = RESOURCE_LIST)
