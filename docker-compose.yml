@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  db-postgres:
+    image: postgres:11.5
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "1234"
+    ports:
+      - "15432:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    networks:
+      - db-compose-network
+      
+  db-postgres-pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "handersonbf@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "1234"
+    ports:
+      - "16543:80"
+    depends_on:
+      - db-postgres
+    networks:
+      - db-compose-network
+
+networks: 
+  db-compose-network:
+    driver: bridge
