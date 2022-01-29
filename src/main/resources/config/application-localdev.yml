@@ -2,11 +2,16 @@ environment: localdev
 
 spring:
   # Database
-  datasource:
-    driver-class-name: org.postgresql.Driver
+  db:
     url: jdbc:postgresql://localhost:5432/motocrud
     username: postgres
     password: 123
+    validationQuery: SELECT 'Hello' from DUAL
+    maximumPoolSize: 25
+    minimumIdle: 25
+    connectionTimeout: 30000
+    idleTimeout: 600000
+    maxLifetime: 180000
   # JPA properties
   jpa:
     hibernate:
@@ -16,6 +21,11 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     open-in-view: false
     generate-ddl: true
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
 
 # Logger configuration
 logging:

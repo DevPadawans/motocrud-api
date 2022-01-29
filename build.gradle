@@ -24,12 +24,14 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-hateoas'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
+    implementation 'org.apache.commons:commons-dbcp2:2.9.0'
 
     // Lombok
     compileOnly 'org.projectlombok:lombok'
