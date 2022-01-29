@@ -23,24 +23,6 @@ public class DatasourceConfiguration {
     @Value("${db.password}")
     private String password;
 
-    @Value("${db.validationQuery}")
-    private String validationQuery;
-
-    @Value("${db.maximumPoolSize}")
-    private Integer maximumPoolSize;
-
-    @Value("${db.minimumIdle}")
-    private Integer minimumIdle;
-
-    @Value("${db.connectionTimeout}")
-    private Long connectionTimeout;
-
-    @Value("${db.idleTimeout}")
-    private Long idleTimeout;
-
-    @Value("${db.maxLifetime}")
-    private Long maxLifetime;
-
     @Bean
     public DataSource dataSource() throws SQLException {
         BasicDataSource postgresDataSource = new BasicDataSource();
@@ -48,18 +30,7 @@ public class DatasourceConfiguration {
         postgresDataSource.setUsername(this.username);
         postgresDataSource.setPassword(this.password);
         postgresDataSource.setUrl(this.url);
-
-        var hikariDataSource = new HikariDataSource();
-        hikariDataSource.setDataSource(postgresDataSource);
-        hikariDataSource.setConnectionTestQuery(this.validationQuery);
-        hikariDataSource.setConnectionTimeout(this.connectionTimeout);
-        hikariDataSource.setMinimumIdle(this.minimumIdle);
-        hikariDataSource.setMaximumPoolSize(this.maximumPoolSize);
-        hikariDataSource.setIdleTimeout(this.idleTimeout);
-        hikariDataSource.setMaxLifetime(this.maxLifetime);
-        hikariDataSource.setSchema(this.username);
-
-        return hikariDataSource;
+        return postgresDataSource;
     }
 
 }

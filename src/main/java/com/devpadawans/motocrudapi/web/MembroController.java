@@ -3,8 +3,6 @@ package com.devpadawans.motocrudapi.web;
 import com.devpadawans.motocrudapi.service.MembroService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +16,7 @@ import static com.devpadawans.motocrudapi.commons.utils.PathUtils.RESOURCE_LIST;
 import static com.devpadawans.motocrudapi.commons.utils.PathUtils.RESOURCE_MEMBROS;
 
 @Slf4j
-@RepositoryRestController
+@RestController
 @RequestMapping(RESOURCE_MEMBROS)
 @RequiredArgsConstructor
 public class MembroController implements Serializable {
