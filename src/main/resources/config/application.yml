@@ -21,3 +21,5 @@ spring:
     exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
   datasource:
     driver-class-name: org.postgresql.Driver
+  flyway:
+    baseline-on-migrate: true

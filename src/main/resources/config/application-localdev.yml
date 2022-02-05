@@ -19,6 +19,12 @@ jpa:
         lob:
           non_contextual_creation: true
 
+spring:
+  flyway:
+    url: jdbc:postgresql://localhost:5432/motocrud
+    user: handersonbf@gmail.com
+    password: 1234
+
 # Logger configuration
 logging:
   pattern:
