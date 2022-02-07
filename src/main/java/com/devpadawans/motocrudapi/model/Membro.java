@@ -12,13 +12,14 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "membros")
+@Table(name = "membro")
 public class Membro extends GenericEntity<String> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "MEMBRO_SEQ", sequenceName = "MEMBRO_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "MEMBRO_SEQ")
     private Long id;
 
     @Basic
