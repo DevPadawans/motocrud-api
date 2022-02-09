@@ -1,9 +1,9 @@
 environment: localdev
 
 db:
-  url: jdbc:postgresql://localhost:5432/motocrud
+  url: jdbc:postgresql://localhost:15432/motocrud
   username: postgres
-  password: 123
+  password: 1234
 # JPA properties
 jpa:
   hibernate:
@@ -21,9 +21,12 @@ jpa:
 
 spring:
   flyway:
-    url: jdbc:postgresql://localhost:5432/motocrud
-    user: handersonbf@gmail.com
+    url: jdbc:postgresql://localhost:15432/motocrud
+    user: postgres
     password: 1234
+    table: version
+    locations: classpath:db/migration
+    schemas: migrations
 
 # Logger configuration
 logging:
