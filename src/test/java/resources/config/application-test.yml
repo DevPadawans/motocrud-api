@@ -1,0 +1,11 @@
+environment: test
+
+server.servlet.context-path: /api
+
+# logging
+logging:
+  level:
+    web: DEBUG
+    sql: DEBUG
+    org.springframework.security: DEBUG
+    type.descriptor.sql.BasicBinder: TRACE

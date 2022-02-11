@@ -1,0 +1,25 @@
+application:
+  title: 'MotoCrud API'
+  version: v1.0.0
+
+# management
+management:
+  endpoints.web.exposure.include: '*'
+
+server:
+  servlet:
+    context-path: /api
+  forward-headers-strategy: FRAMEWORK
+
+spring:
+  # profile
+  profiles.active: localdev
+  # application
+  application:
+    name: motocrud-api
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  datasource:
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    baseline-on-migrate: true
