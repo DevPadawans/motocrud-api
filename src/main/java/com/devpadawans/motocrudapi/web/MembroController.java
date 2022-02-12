@@ -1,19 +1,20 @@
 package com.devpadawans.motocrudapi.web;
 
+import com.devpadawans.motocrudapi.dto.MembroDTO;
+import com.devpadawans.motocrudapi.model.Membro;
 import com.devpadawans.motocrudapi.service.MembroService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Optional;
 
-import static com.devpadawans.motocrudapi.commons.utils.PathUtils.RESOURCE_LIST;
-import static com.devpadawans.motocrudapi.commons.utils.PathUtils.RESOURCE_MEMBROS;
+import static com.devpadawans.motocrudapi.commons.utils.PathUtils.*;
 
 @Slf4j
 @RestController
@@ -26,8 +27,26 @@ public class MembroController implements Serializable {
     private final MembroService memberService;
 
     @GetMapping(path = RESOURCE_LIST)
-    public ResponseEntity<?> getListMembers(@RequestParam MultiValueMap<String, String> params){
-        this.memberService.findAll();
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<List<Membro>> getListMembers(@RequestParam MultiValueMap<String, String> params){
+        //getById
+        List<Membro> list = memberService.findAll();
+        return ResponseEntity.ok(list);
     }
+
+    @PostMapping(path = RESOURCE_ADD)
+    public ResponseEntity<?> adicionarMembro(@RequestBody MembroDTO membro){
+//        return Optional.ofNullable(membro.toMembro())
+//                .map(memberService::save)
+//                .orElseThrow(() -> new IllegalArgumentException("Algum probs"));
+
+        memberService.save(membro.toMembro());
+        return new ResponseEntity("successfully", HttpStatus.CREATED);
+    }
+
+    @PutMapping(path = RESOURCE_REMOVE + "/{id}")
+    public ResponseEntity<?> removerMembro(@PathVariable Long id){
+//        memberService.delete(id);
+        return new ResponseEntity("successfully", HttpStatus.OK);
+    }
+
 }

@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.lang.reflect.Member;
 import java.time.LocalDate;
 
 @Data
@@ -18,8 +19,7 @@ public class Membro extends GenericEntity<String> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name = "MEMBRO_SEQ", sequenceName = "MEMBRO_SEQ", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "MEMBRO_SEQ")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Basic
@@ -41,4 +41,10 @@ public class Membro extends GenericEntity<String> implements Serializable {
     @Basic
     @Column(name = "nascimento")
     private LocalDate nascimento;
+
+    public Membro(String apelido, String nome, String padrinho){
+        this.apelido = apelido;
+        this.nome = nome;
+        this.padrinho = padrinho;
+    }
 }
