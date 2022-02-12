@@ -12,7 +12,7 @@ public interface BaseRepository<T, ID> extends PagingAndSortingRepository<T, ID>
 
     @Modifying
     @Transactional
-    @Query("UPDATE #{#entityName} e SET e.active = false WHERE e.id = ?1")
+    @Query("UPDATE #{#entityName} e SET e.ativo = false WHERE e.id = ?1")
     void softDelete(ID id);
 
 }

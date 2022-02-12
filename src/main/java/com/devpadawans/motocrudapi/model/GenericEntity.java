@@ -39,9 +39,6 @@ public abstract class GenericEntity<U> implements Serializable {
     @Column(name = "updated_at")
     protected Instant updatedAt;
 
-    @Version
-    Integer version;
-
-    @Column(name = "active")
-    protected Boolean active = true;
+    @Column(name = "ativo")
+    protected Boolean ativo = true;
 }

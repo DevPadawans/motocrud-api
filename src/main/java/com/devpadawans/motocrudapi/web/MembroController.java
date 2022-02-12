@@ -26,11 +26,19 @@ public class MembroController implements Serializable {
 
     private final MembroService memberService;
 
-    @GetMapping(path = RESOURCE_LIST)
-    public ResponseEntity<List<Membro>> getListMembers(@RequestParam MultiValueMap<String, String> params){
-        //getById
-        List<Membro> list = memberService.findAll();
-        return ResponseEntity.ok(list);
+    @GetMapping(path = RESOURCE_SEARCH)
+    public ResponseEntity<?> searchMembros(@RequestParam MultiValueMap<String, String> params){
+
+        List<Membro> teste = memberService.findAll();
+        System.out.println(teste);
+
+        return ResponseEntity.ok().body("Trazer page de todos membro");
+    }
+
+    @GetMapping(path = RESOURCE_FILTER)
+    public ResponseEntity<?> filtrarMembros(@RequestParam MultiValueMap<String, String> params){
+        //decidir o que vai usar na busca
+        return ResponseEntity.ok().body("Filtrar membro por alguns campos");
     }
 
     @PostMapping(path = RESOURCE_ADD)
@@ -41,6 +49,12 @@ public class MembroController implements Serializable {
 
         memberService.save(membro.toMembro());
         return new ResponseEntity("successfully", HttpStatus.CREATED);
+    }
+
+    @GetMapping(path = RESOURCE_UPDATE)
+    public ResponseEntity<?> atualizarMembro(@RequestBody MembroDTO membro){
+
+        return ResponseEntity.ok().body("Atualizar membro");
     }
 
     @PutMapping(path = RESOURCE_REMOVE + "/{id}")
