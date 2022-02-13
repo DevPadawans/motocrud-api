@@ -68,14 +68,12 @@ class MotocrudApiApplicationTests {
 
     public static final long DOIS = 2l;
     public static final int STATUS_200 = 200;
+
     @Autowired
     private MockMvc mvc;
 
     @MockBean
     private MembroService membroService ;
-
-    @MockBean
-    private MembroRepository membroRepository;
 
     @Autowired
     private MembroController membroController;
