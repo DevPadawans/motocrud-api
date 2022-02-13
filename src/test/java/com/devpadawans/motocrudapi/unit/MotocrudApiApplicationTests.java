@@ -1,4 +1,4 @@
-package com.devpadawans.motocrudapi;
+package com.devpadawans.motocrudapi.unit;
 
 import com.devpadawans.motocrudapi.commons.utils.PathUtils;
 import com.devpadawans.motocrudapi.dto.MembroDTO;
@@ -78,19 +78,8 @@ class MotocrudApiApplicationTests {
     @Autowired
     private MembroController membroController;
 
-    protected String mapToJson(Object obj) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(obj);
-    }
-    protected <T> T mapFromJson(String json, Class<T> clazz)
-            throws JsonParseException, JsonMappingException, IOException {
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(json, clazz);
-    }
-
     @Test
-    public void deveriaRetornarUmaListaDeMembros() throws Exception {
+    public void deveriaRetornarUmaListaDeMembros() {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
