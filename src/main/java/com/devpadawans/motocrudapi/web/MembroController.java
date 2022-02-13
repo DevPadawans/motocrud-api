@@ -46,13 +46,11 @@ public class MembroController implements Serializable {
 
     @GetMapping(path = RESOURCE_UPDATE)
     public ResponseEntity<?> atualizarMembro(@RequestBody MembroDTO membro){
-
         return ResponseEntity.ok().body("Atualizar membro");
     }
 
     @PutMapping(path = RESOURCE_REMOVE + "/{id}")
     public ResponseEntity<?> removerMembro(@PathVariable Long id){
-//        memberService.delete(id);
         return new ResponseEntity("successfully", HttpStatus.OK);
     }
 
