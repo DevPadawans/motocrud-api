@@ -38,13 +38,10 @@ public class MembroController implements Serializable {
     }
 
     @PostMapping(path = RESOURCE_ADD)
-    public ResponseEntity<?> adicionarMembro(@RequestBody MembroDTO membro){
-//        return Optional.ofNullable(membro.toMembro())
-//                .map(memberService::save)
-//                .orElseThrow(() -> new IllegalArgumentException("Algum probs"));
-
-        membroService.save(membro.toMembro());
-        return new ResponseEntity("successfully", HttpStatus.CREATED);
+    public ResponseEntity<MembroDTO> adicionarMembro(@RequestBody MembroDTO membroDTO){
+        Membro membroSalvo = membroService.save(membroDTO.toMembro());
+        MembroDTO membroDTOSalvo = new MembroDTO(membroSalvo);
+        return ResponseEntity.ok().body(membroDTOSalvo);
     }
 
     @GetMapping(path = RESOURCE_UPDATE)

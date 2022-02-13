@@ -22,7 +22,7 @@ public class MembroServiceImpl implements MembroService {
 
     @Override
     public Membro save(Membro entity) {
-        return null;
+        return membroRepository.save(entity);
     }
 
     @Override

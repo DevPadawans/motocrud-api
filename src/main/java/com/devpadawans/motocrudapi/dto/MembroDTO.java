@@ -23,6 +23,7 @@ import static java.util.Objects.nonNull;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MembroDTO {
 
+    private Long id;
     private String apelido;
     private String nome;
     private String padrinho;
@@ -36,6 +37,7 @@ public class MembroDTO {
     @JsonIgnore
     public MembroDTO(Membro membro){
         if (nonNull(membro) && nonNull(membro.getId())){
+            this.id = membro.getId();
             this.apelido = membro.getApelido();
             this.nome = membro.getNome();
             this.padrinho = membro.getPadrinho();
@@ -43,7 +45,7 @@ public class MembroDTO {
     }
 
     public Membro toMembro(){
-        return new Membro(this.apelido, this.nome, this.padrinho);
+        return new Membro(this.id, this.apelido, this.nome, this.padrinho);
     }
 
 }

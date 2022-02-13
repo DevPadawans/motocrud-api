@@ -47,4 +47,11 @@ public class Membro extends GenericEntity<String> implements Serializable {
         this.nome = nome;
         this.padrinho = padrinho;
     }
+
+    public Membro(Long id, String apelido, String nome, String padrinho){
+        this.id = id;
+        this.apelido = apelido;
+        this.nome = nome;
+        this.padrinho = padrinho;
+    }
 }
