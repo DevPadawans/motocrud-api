@@ -64,7 +64,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles(profiles = {"test"})
 @SpringBootTest
 @AutoConfigureMockMvc
-class MotocrudApiApplicationTests {
+class MembroControllerUnitTests {
 
     public static final long DOIS = 2l;
     public static final int STATUS_200 = 200;
