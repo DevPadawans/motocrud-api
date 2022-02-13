@@ -80,9 +80,6 @@ class MembroControllerUnitTests {
 
     @Test
     public void deveriaRetornarUmaListaDeMembros() {
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
         when(membroService.findAll()).thenReturn(Arrays.asList(new Membro(), new Membro()));
 
         MultiValueMap<String, String> paramsNull = new LinkedMultiValueMap<>();
