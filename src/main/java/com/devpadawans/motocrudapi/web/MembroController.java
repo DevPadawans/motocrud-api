@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 
 import static com.devpadawans.motocrudapi.commons.utils.PathUtils.*;
 
@@ -24,15 +23,12 @@ public class MembroController implements Serializable {
 
     private final static long serialVersionUID = 1L;
 
-    private final MembroService memberService;
+    private final MembroService membroService;
 
     @GetMapping(path = RESOURCE_SEARCH)
-    public ResponseEntity<?> searchMembros(@RequestParam MultiValueMap<String, String> params){
-
-        List<Membro> teste = memberService.findAll();
-        System.out.println(teste);
-
-        return ResponseEntity.ok().body("Trazer page de todos membro");
+    public ResponseEntity<List<Membro>> searchMembros(@RequestParam MultiValueMap<String, String> params){
+        List<Membro> membros = membroService.findAll();
+        return ResponseEntity.ok().body(membros);
     }
 
     @GetMapping(path = RESOURCE_FILTER)
@@ -47,7 +43,7 @@ public class MembroController implements Serializable {
 //                .map(memberService::save)
 //                .orElseThrow(() -> new IllegalArgumentException("Algum probs"));
 
-        memberService.save(membro.toMembro());
+        membroService.save(membro.toMembro());
         return new ResponseEntity("successfully", HttpStatus.CREATED);
     }
 
