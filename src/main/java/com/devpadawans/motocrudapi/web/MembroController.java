@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 import static com.devpadawans.motocrudapi.commons.utils.PathUtils.*;
 
@@ -26,15 +27,15 @@ public class MembroController implements Serializable {
     private final MembroService membroService;
 
     @GetMapping(path = RESOURCE_SEARCH)
-    public ResponseEntity<List<Membro>> searchMembros(@RequestParam MultiValueMap<String, String> params){
+    public ResponseEntity<List<Membro>> procurarMembros(@RequestParam MultiValueMap<String, String> params){
         List<Membro> membros = membroService.findAll();
         return ResponseEntity.ok().body(membros);
     }
 
     @GetMapping(path = RESOURCE_FILTER)
-    public ResponseEntity<?> filtrarMembros(@RequestParam MultiValueMap<String, String> params){
-        //decidir o que vai usar na busca
-        return ResponseEntity.ok().body("Filtrar membro por alguns campos");
+    public ResponseEntity<?> filtrarMembrosPorID(@PathVariable long id){
+        Optional<Membro> byId = membroService.findById(id);
+        return ResponseEntity.ok().body(byId);
     }
 
     @PostMapping(path = RESOURCE_ADD)

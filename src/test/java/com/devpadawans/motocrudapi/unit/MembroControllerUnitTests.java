@@ -18,9 +18,11 @@ import org.springframework.util.MultiValueMap;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 @ActiveProfiles(profiles = {"test"})
@@ -44,11 +46,11 @@ class MembroControllerUnitTests {
     private MembroController membroController;
 
     @Test
-    public void deveriaRetornarUmaListaDeMembros() {
+    void deveriaRetornarUmaListaDeMembros() {
         when(membroService.findAll()).thenReturn(Arrays.asList(new Membro(), new Membro()));
 
         MultiValueMap<String, String> paramsNull = new LinkedMultiValueMap<>();
-        ResponseEntity<List<Membro>> responseEntity = membroController.searchMembros(paramsNull);
+        ResponseEntity<List<Membro>> responseEntity = membroController.procurarMembros(paramsNull);
 
         List<Membro> body = responseEntity.getBody();
         assertEquals("Deveria retornar Status 200 OK", responseEntity.getStatusCodeValue(), STATUS_200);
@@ -56,18 +58,10 @@ class MembroControllerUnitTests {
     }
 
     @Test
-    public void deveriaAdicionarUmMembro(){
-        Membro membro = new Membro();
-        membro.setId(1l);
-        membro.setApelido("OGRO");
-        membro.setNome("Handerson Frota");
-        membro.setPadrinho("-----");
+    void deveriaAdicionarUmMembro(){
+        Membro membro = criarMembro(1l, "Ogro", "Handerson Frota", "Padrinho");
 
-        MembroDTO membroDTO = new MembroDTO();
-        membroDTO.setId(1l);
-        membroDTO.setApelido("OGRO");
-        membroDTO.setNome("Handerson Frota");
-        membroDTO.setPadrinho("-----");
+        MembroDTO membroDTO = criarMembroDTO(1l, "Ogro", "Handerson Frota", "Padrinho");
 
         when(membroService.save(membro)).thenReturn(membro);
 
@@ -77,6 +71,39 @@ class MembroControllerUnitTests {
         assertEquals("Deveria retornar o Membro salvo com o mesmo ID", responseEntity.getBody().getId(), membroDTO.getId());
         assertEquals("Deveria retornar o Membro salvo com o mesmo NOME", responseEntity.getBody().getNome(), membroDTO.getNome());
         assertEquals("Deveria retornar o Membro salvo com o mesmo APELIDO", responseEntity.getBody().getApelido(), membroDTO.getApelido());
+    }
+
+    @Test
+    void deveriaBuscarMembroPorID(){
+        Membro membro = criarMembro(2L, "Ogro", "Handerson", "padrinho");
+//        criarMembroDTO(2L,"Ogro", "Handerson", "padrinho");
+
+        when(membroService.findById(2l)).thenReturn(java.util.Optional.of(membro));
+
+        ResponseEntity<?> responseEntity = membroController.filtrarMembrosPorID(2l);
+
+        Optional<Membro> body = (Optional<Membro>) responseEntity.getBody();
+
+        assertTrue(body.isPresent());
+        assertEquals("Deveria retornar mensagem de sucesso!", responseEntity.getStatusCodeValue(), STATUS_200);
+    }
+
+    private Membro criarMembro(Long id, String apelido, String nome, String padrinho){
+        Membro membro = new Membro();
+        membro.setId(id);
+        membro.setApelido(apelido);
+        membro.setNome(nome);
+        membro.setPadrinho(padrinho);
+        return membro;
+    }
+
+    private MembroDTO criarMembroDTO(Long id, String apelido, String nome, String padrinho){
+        MembroDTO membroDTO = new MembroDTO();
+        membroDTO.setId(id);
+        membroDTO.setApelido(apelido);
+        membroDTO.setNome(nome);
+        membroDTO.setPadrinho(padrinho);
+        return membroDTO;
     }
 
 }
