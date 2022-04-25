@@ -1,11 +1,10 @@
-package com.devpadawans.motocrudapi.service.implmentation;
+package com.devpadawans.motocrudapi.service.impl;
 
 import com.devpadawans.motocrudapi.model.Membro;
 import com.devpadawans.motocrudapi.repository.MembroRepository;
 import com.devpadawans.motocrudapi.service.MembroService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -31,8 +30,8 @@ public class MembroServiceImpl implements MembroService {
     }
 
     @Override
-    public void delete(Membro entity) {
-
+    public void delete(Membro membro) {
+        membroRepository.delete(membro);
     }
 
     @Override

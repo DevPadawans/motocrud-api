@@ -12,4 +12,6 @@ public class PathUtils {
     public static final String RESOURCE_REMOVE = "remover";
     public static final String RESOURCE_UPDATE = "atualizar";
 
+    public static final String SLASH = "/";
+
 }

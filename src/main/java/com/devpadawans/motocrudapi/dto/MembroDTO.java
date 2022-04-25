@@ -4,12 +4,12 @@ import com.devpadawans.motocrudapi.model.Membro;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import java.lang.reflect.Member;
 import java.time.LocalDate;
 
 import static java.util.Objects.nonNull;
@@ -24,8 +24,15 @@ import static java.util.Objects.nonNull;
 public class MembroDTO {
 
     private Long id;
+
+    @NotNull
+    @NotEmpty
     private String apelido;
+
+    @NotNull
+    @NotEmpty
     private String nome;
+
     private String padrinho;
 
     @JsonProperty("data_inicio")
