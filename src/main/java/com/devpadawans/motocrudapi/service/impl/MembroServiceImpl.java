@@ -25,8 +25,8 @@ public class MembroServiceImpl implements MembroService {
     }
 
     @Override
-    public void update(Membro entity) {
-
+    public void update(Membro membro) {
+        membroRepository.save(membro);
     }
 
     @Override

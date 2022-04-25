@@ -53,7 +53,7 @@ public class MembroController implements Serializable {
     @PostMapping(path = RESOURCE_ADD + "/testePost")
     public ResponseEntity<Object> adicionarMembroOpcional(@RequestBody Membro membro){
         Optional<Membro> membroOptional = membroService.findById(membro.getId());
-        if (!membroOptional.isPresent()){
+        if (membroOptional.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Membro not found.");
         }else{
             var membroModel = membroOptional.get();
@@ -66,7 +66,7 @@ public class MembroController implements Serializable {
     public ResponseEntity<Object> atualizarMembro(@RequestBody Membro membro){
         log.debug("PUT updateMembro received {} ", membro.toString());
         Optional<Membro> membroOptional = membroService.findById(membro.getId());
-        if (!membroOptional.isPresent()){
+        if (membroOptional.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Membro not found.");
         }else{
             var membroModel = membroOptional.get();
@@ -82,7 +82,7 @@ public class MembroController implements Serializable {
     @DeleteMapping(path = RESOURCE_REMOVE + "/{id}")
     public ResponseEntity<Object> removerMembro(@PathVariable Long id){
         Optional<Membro> membroOptional = membroService.findById(id);
-        if(!membroOptional.isPresent()){
+        if(membroOptional.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Membro not found.");
         }else{
             membroService.delete(membroOptional.get());
