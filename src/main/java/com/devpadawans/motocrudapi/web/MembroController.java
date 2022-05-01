@@ -39,7 +39,7 @@ public class MembroController implements Serializable {
     public ResponseEntity<Page<Membro>> getAllMembros(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
                                                       SpecificationTemplate.MembroSpecification spec){
         Page<Membro> membroModelPage = membroService.paginate(pageable, spec);
-//        teste sem Hateos
+//        Teste Hateoas
         if(!membroModelPage.isEmpty()){
             for(Membro membro : membroModelPage.toList()){
                 membro.add(linkTo(methodOn(MembroController.class).getMembroPorId(membro.getId())).withSelfRel());
@@ -65,7 +65,6 @@ public class MembroController implements Serializable {
 
     @GetMapping(path = RESOURCE_FILTER)
     public ResponseEntity<?> filtrarMembros(@RequestParam MultiValueMap<String, String> params){
-        //decidir o que vai usar na busca, pageable?
         return ResponseEntity.ok().body("Filtrar membro por alguns campos");
     }
 

@@ -1,10 +1,10 @@
 package com.devpadawans.motocrudapi.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.lang.reflect.Member;
 import java.time.LocalDate;
 
 @Data
@@ -12,9 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Entity
 @Table(name = "membro")
-public class Membro extends GenericEntity<Membro> implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Membro extends GenericEntity<Membro> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
