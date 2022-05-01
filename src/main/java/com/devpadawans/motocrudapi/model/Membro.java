@@ -8,13 +8,11 @@ import java.lang.reflect.Member;
 import java.time.LocalDate;
 
 @Data
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "membro")
-public class Membro extends GenericEntity<String> implements Serializable {
+public class Membro extends GenericEntity<Membro> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -42,11 +40,8 @@ public class Membro extends GenericEntity<String> implements Serializable {
     @Column(name = "nascimento")
     private LocalDate nascimento;
 
-    public Membro(String apelido, String nome, String padrinho){
-        this.apelido = apelido;
-        this.nome = nome;
-        this.padrinho = padrinho;
-    }
+    @Column(name = "ativo")
+    protected Boolean ativo = true;
 
     public Membro(Long id, String apelido, String nome, String padrinho){
         this.id = id;

@@ -5,10 +5,10 @@ CREATE TABLE IF NOT EXISTS membro (
     padrinho    VARCHAR(100) NOT NULL,
     inicio      TIMESTAMP NOT NULL,
     nascimento  TIMESTAMP,
+    ativo       BOOLEAN DEFAULT TRUE,
 --     auditory
     created_by  VARCHAR(100),
     updated_by  VARCHAR(100),
     created_at  TIMESTAMP,
-    updated_at  TIMESTAMP,
-    ativo       BOOLEAN DEFAULT TRUE
+    updated_at  TIMESTAMP
 );

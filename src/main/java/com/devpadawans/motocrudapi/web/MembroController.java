@@ -3,8 +3,13 @@ package com.devpadawans.motocrudapi.web;
 import com.devpadawans.motocrudapi.dto.MembroDTO;
 import com.devpadawans.motocrudapi.model.Membro;
 import com.devpadawans.motocrudapi.service.MembroService;
+import com.devpadawans.motocrudapi.specifications.SpecificationTemplate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
@@ -17,6 +22,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.devpadawans.motocrudapi.commons.utils.PathUtils.*;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Slf4j
 @RestController
@@ -24,9 +31,32 @@ import static com.devpadawans.motocrudapi.commons.utils.PathUtils.*;
 @RequiredArgsConstructor
 public class MembroController implements Serializable {
 
-    private final static long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     private final MembroService membroService;
+
+    @GetMapping
+    public ResponseEntity<Page<Membro>> getAllMembros(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
+                                                      SpecificationTemplate.MembroSpecification spec){
+        Page<Membro> membroModelPage = membroService.paginate(pageable, spec);
+//        teste sem Hateos
+        if(!membroModelPage.isEmpty()){
+            for(Membro membro : membroModelPage.toList()){
+                membro.add(linkTo(methodOn(MembroController.class).getMembroPorId(membro.getId())).withSelfRel());
+            }
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(membroModelPage);
+    }
+
+    @GetMapping(path = RESOURCE_SEARCH + "/{id}")
+    public ResponseEntity<Object> getMembroPorId(@PathVariable(value = "id") Long id){
+        Optional<Membro> membroOptional = membroService.findById(id);
+        if (!membroOptional.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Membro not found.");
+        }else{
+            return ResponseEntity.status(HttpStatus.OK).body(membroOptional.get());
+        }
+    }
 
     @GetMapping(path = RESOURCE_SEARCH)
     public ResponseEntity<List<Membro>> searchMembros(@RequestParam MultiValueMap<String, String> params){
@@ -58,7 +88,7 @@ public class MembroController implements Serializable {
         }else{
             var membroModel = membroOptional.get();
             membroService.update(membroModel);
-            return ResponseEntity.status(HttpStatus.OK).body(membroModel);
+            return ResponseEntity.status(HttpStatus.CREATED).body(membroModel);
         }
     }
 

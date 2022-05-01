@@ -6,6 +6,7 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -17,7 +18,7 @@ import java.time.Instant;
 @Getter
 @Setter
 @MappedSuperclass
-public abstract class GenericEntity<U> implements Serializable {
+public abstract class GenericEntity<U extends RepresentationModel<? extends U>> extends RepresentationModel<U> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -39,6 +40,4 @@ public abstract class GenericEntity<U> implements Serializable {
     @Column(name = "updated_at")
     protected Instant updatedAt;
 
-    @Column(name = "ativo")
-    protected Boolean ativo = true;
 }
