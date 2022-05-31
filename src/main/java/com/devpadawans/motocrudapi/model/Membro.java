@@ -2,17 +2,22 @@ package com.devpadawans.motocrudapi.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "membro")
-public class Membro extends GenericEntity<Membro> {
+@Table(name = "MEMBRO")
+public class Membro extends GenericEntity<Membro> implements Serializable {
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

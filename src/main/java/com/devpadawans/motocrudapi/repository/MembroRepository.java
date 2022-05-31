@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface MembroRepository extends JpaRepository<Membro, Long>, BaseRepository<Membro, Long> {
+public interface MembroRepository extends JpaRepository<Membro, Long>{
 
     Membro findByNome(String nome);
 
