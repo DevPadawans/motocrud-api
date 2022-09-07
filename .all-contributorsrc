@@ -23,6 +23,15 @@
         "code",
         "projectManagement"
       ]
+    },
+    {
+      "login": "lucasapoena",
+      "name": "Lucas Apoena",
+      "avatar_url": "https://avatars.githubusercontent.com/u/135553?v=4",
+      "profile": "https://www.lucasapoena.eti.br/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
