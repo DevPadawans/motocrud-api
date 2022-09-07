@@ -1,6 +1,6 @@
 # Motocrud API
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Descrição
@@ -87,6 +87,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/robsonprod"><img src="https://avatars.githubusercontent.com/u/6569461?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Robson Azevedo</b></sub></a><br /><a href="https://github.com/DevPadawans/motocrud-api/commits?author=robsonprod" title="Code">💻</a></td>
     <td align="center"><a href="http://www.handersonfrota.com.br"><img src="https://avatars.githubusercontent.com/u/150206?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Handerson Frota</b></sub></a><br /><a href="https://github.com/DevPadawans/motocrud-api/commits?author=handersonbf" title="Code">💻</a> <a href="#projectManagement-handersonbf" title="Project Management">📆</a></td>
+    <td align="center"><a href="https://www.lucasapoena.eti.br/"><img src="https://avatars.githubusercontent.com/u/135553?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Lucas Apoena</b></sub></a><br /><a href="https://github.com/DevPadawans/motocrud-api/commits?author=lucasapoena" title="Documentation">📖</a></td>
   </tr>
 </table>
 
